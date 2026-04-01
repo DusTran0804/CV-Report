@@ -31,6 +31,7 @@
         const { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } = window.Recharts;
         const { useState } = React;
 
+        // --- DỮ LIỆU THỰC TẾ ---
         const monthlyData = [
             { month: 'Jan 25', users: 0, mrr: 0, subs: 0 },
             { month: 'Feb 25', users: 0, mrr: 0, subs: 0 },
@@ -46,6 +47,7 @@
             { month: 'Dec 25', users: 1593, mrr: 1882424532, subs: 1840 },
         ];
 
+        // Dữ liệu Cohort theo tuần (Từ W0 đến W12)
         const cohortData = [
             { cohort: '2025-03-31', size: 26, retention: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0] },
             { cohort: '2025-04-07', size: 33, retention: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0] },
@@ -154,14 +156,13 @@
                                 <div className="flex justify-between items-end mb-2">
                                     <div>
                                         <h2 className="text-2xl font-bold text-slate-900">Monthly Performance (Accrual Basis)</h2>
-                                        <p className="text-slate-500">Báo cáo</p>
+                                        <p className="text-slate-500">Báo cáo đáp ứng yêu cầu số 1, 2 và 3 của đề bài.</p>
                                     </div>
                                     <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full border border-green-200">Dec 2025 Data</span>
                                 </div>
 
                                 {/* KPI Cards */}
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    {/* Q2: Accrual MRR */}
                                     <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
                                         <div className="absolute top-0 right-0 bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-1 rounded-bl-lg"> </div>
                                         <div className="flex justify-between items-start">
@@ -179,7 +180,6 @@
                                         </div>
                                     </div>
 
-                                    {/* Q1: Accrual Active Users */}
                                     <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
                                         <div className="absolute top-0 right-0 bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-1 rounded-bl-lg"> </div>
                                         <div className="flex justify-between items-start">
@@ -197,7 +197,6 @@
                                         </div>
                                     </div>
 
-                                    {/* Q3: Active Subscriptions */}
                                     <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
                                         <div className="absolute top-0 right-0 bg-purple-100 text-purple-700 text-[10px] font-bold px-2 py-1 rounded-bl-lg"> </div>
                                         <div className="flex justify-between items-start">
@@ -262,7 +261,7 @@
                             </div>
                         )}
 
-                        {/* TAB 2: COHORT ANALYSIS (Q4) */}
+                        {/* TAB 2: COHORT ANALYSIS */}
                         {activeTab === 'cohort' && (
                             <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm animate-in fade-in duration-300 relative overflow-hidden">
                                 <div className="absolute top-0 right-0 bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-1 rounded-bl-lg"> </div>
@@ -284,7 +283,6 @@
                                             <tr>
                                                 <th className="px-4 py-3 font-semibold text-slate-700 bg-slate-50 border-b border-slate-200 sticky left-0 z-10">Cohort (Tuần)</th>
                                                 <th className="px-4 py-3 font-semibold text-slate-700 bg-slate-50 text-center border-b border-slate-200 border-r border-white">Size</th>
-                                                {/* VÒNG LẶP TIÊU ĐỀ: Đã sửa lại chạy từ 0 đến 12 (13 cột) */}
                                                 {[...Array(13)].map((_, i) => (
                                                     <th key={i} className="px-4 py-3 font-semibold text-slate-700 bg-slate-50 text-center border-b border-white w-20">W{i}</th>
                                                 ))}
@@ -298,7 +296,6 @@
                                                     {row.retention.map((val, wIndex) => {
                                                         if (val === null) return <td key={wIndex} className="bg-slate-50/50 border-b border-white"></td>;
                                                         
-                                                        // Heatmap logic: Darker blue for higher retention
                                                         const opacity = val === 1 ? 0.9 : Math.max(0.1, (val - 0.5) * 2); 
                                                         const bgColor = `rgba(37, 99, 235, ${opacity})`;
                                                         const textColor = val > 0.75 ? 'text-white' : 'text-slate-800';
@@ -330,45 +327,59 @@
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {/* Cột 1: Định nghĩa Metric (Đã được cập nhật giải thích sâu) */}
                                     <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-6">
                                         <h3 className="text-xl font-bold text-slate-900 border-b pb-3 flex items-center">
-                                            <Icons.CheckCircle /> <span className="ml-2">1. Định nghĩa & Cách tính</span>
+                                            <Icons.CheckCircle /> <span className="ml-2">1. Định nghĩa & Phân tích</span>
                                         </h3>
                                         
                                         <div className="space-y-4 text-slate-700 text-sm">
                                             <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                                                <h4 className="font-bold text-slate-900 mb-2">1.1. Accrual Active Users</h4>
-                                                <p><strong>Định nghĩa:</strong> User được xem là active trong một tháng nếu subscription của họ còn hiệu lực <strong>ít nhất 1 ngày</strong> trong tháng đó.</p>
+                                                <h4 className="font-bold text-slate-900 mb-2">1.1. Accrual MRR (Doanh thu Dồn tích)</h4>
+                                                <p className="mb-2"><strong>Bản chất:</strong> Thay vì ghi nhận toàn bộ dòng tiền vào tháng khách hàng thanh toán (Cash-flow), kế toán dồn tích (Accrual) chia đều doanh thu ra suốt thời gian cung cấp dịch vụ thực tế.</p>
+                                                <p className="mb-2"><strong>Cách tính:</strong> <code>Daily Revenue = Tổng tiền / Tổng số ngày của gói</code>.</p>
+                                                <div className="bg-blue-50 text-blue-800 p-3 rounded text-xs border border-blue-100 mt-2">
+                                                    <strong>Ý nghĩa cho VC:</strong> MRR dồn tích cho thấy quy mô hoạt động thực sự của mô hình SaaS. Nó trả lời câu hỏi: "Nền tảng đang phục vụ lượng dịch vụ trị giá bao nhiêu tiền mỗi tháng?" để đánh giá định giá công ty.
+                                                </div>
                                             </div>
 
                                             <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                                                <h4 className="font-bold text-slate-900 mb-2">1.2. Accrual MRR</h4>
-                                                <p><strong>Định nghĩa:</strong> Doanh thu dồn tích hàng tháng. Chuyển đổi dòng tiền (Cash flow) thành doanh thu phân bổ đều theo thời gian cung cấp dịch vụ (Accrual basis).</p>
+                                                <h4 className="font-bold text-slate-900 mb-2">1.2. Accrual Active Users</h4>
+                                                <p className="mb-2"><strong>Định nghĩa:</strong> Khác với DAU (mở app mỗi ngày), user được coi là "Active" về mặt tài chính trong tháng nếu họ <strong>đang sở hữu một gói dịch vụ còn hiệu lực ít nhất 1 ngày</strong> trong tháng đó.</p>
+                                                <div className="bg-emerald-50 text-emerald-800 p-3 rounded text-xs border border-emerald-100 mt-2">
+                                                    <strong>Ý nghĩa cho VC:</strong> Dùng để đối chiếu với MRR, xem tốc độ mở rộng tập khách hàng (Scale) có đang diễn ra tương xứng với sự tăng trưởng doanh thu hay không (tính toán ARPU).
+                                                </div>
                                             </div>
 
                                             <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                                                <h4 className="font-bold text-slate-900 mb-2">1.3. Retention by Cohort</h4>
-                                                <p><strong>Định nghĩa Cohort:</strong> Xác định theo thời điểm user bắt đầu subscription <strong>ĐẦU TIÊN</strong> (Loại bỏ nhiễu từ các lần gia hạn sau).</p>
+                                                <h4 className="font-bold text-slate-900 mb-2">1.3. Cohort Retention (Theo Nhóm)</h4>
+                                                <p className="mb-2"><strong>Định nghĩa:</strong> Gom nhóm theo <strong>tuần mua hàng ĐẦU TIÊN</strong>. Đo lường tỷ lệ % khách tiếp tục gia hạn ở các tuần W1 đến W12.</p>
+                                                <ul className="list-disc pl-5 text-sm space-y-1 mt-2">
+                                                    <li><strong>Giai đoạn W0 - W4:</strong> Tỷ lệ thường là 100% do người dùng phần lớn đang sử dụng gói 1 tháng.</li>
+                                                    <li><strong>Vách đá Rời bỏ (The Churn Cliff - W5):</strong> Điểm rơi quan trọng nhất khi gói 1 tháng hết hạn. Tỷ lệ % còn lại chính là lượng khách hàng quyết định <strong>Gia hạn (Renew)</strong>.</li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
 
+                                    {/* Cột 2: Data Handling */}
                                     <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-6">
                                         <h3 className="text-xl font-bold text-slate-900 border-b pb-3 flex items-center">
-                                            <Icons.AlertTriangle /> <span className="ml-2">2. Xử lý Dữ liệu (Dựa trên Gợi ý)</span>
+                                            <Icons.AlertTriangle /> <span className="ml-2">2. Xử lý Dữ liệu (Edge Cases)</span>
                                         </h3>
                                         
                                         <div className="space-y-4 text-slate-700 text-sm">
                                             <div className="bg-orange-50 p-4 rounded-lg border border-orange-100">
                                                 <h4 className="font-bold text-slate-900 mb-2">2.1. Vấn đề "Trả góp" (Installments)</h4>
-                                                <p><strong>Giải quyết (Chuẩn VC):</strong> Báo cáo <strong>Accrual MRR</strong> phải dựa trên <code>Tổng tiền (Total Order Value)</code> thay vì <code>Đã thanh toán (Cash Collected)</code>.</p>
+                                                <p><strong>Giải quyết:</strong> Báo cáo <strong>Accrual MRR</strong> phải dựa trên <code>Tổng tiền (Total Order Value)</code> thay vì <code>Đã thanh toán (Cash Collected)</code>. Điều này đảm bảo đường cong biểu đồ phản ánh sức khỏe kinh doanh cốt lõi thay vì dòng tiền mặt ngắn hạn.</p>
                                             </div>
 
                                             <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
                                                 <h4 className="font-bold text-slate-900 mb-2">2.2. Vấn đề "Nhiều đơn hàng" (Multiple Orders)</h4>
                                                 <ul className="list-disc pl-5 space-y-1">
-                                                    <li>Dữ liệu đã được <code>deduplicate</code> (loại trùng lặp) cho Active Users.</li>
-                                                    <li>Việc xếp nhóm (Cohort Group) được khóa cứng bằng lệnh `min(Ngày thanh toán)` của mỗi user.</li>
+                                                    <li><strong>Active Users:</strong> Dữ liệu đã được <code>deduplicate</code> (loại trùng lặp). Nếu 1 User chạy 2 gói song song, chỉ đếm là 1 User.</li>
+                                                    <li><strong>Active Subs:</strong> Sẽ đếm là 2 Subscriptions. Do đó đường Subscriptions luôn nằm trên đường Users trên biểu đồ mảng.</li>
+                                                    <li><strong>Cohort Lock:</strong> Khóa Cohort Group bằng lệnh <code>min(Ngày thanh toán)</code> để tránh việc user mua lại gói (renew) bị tính như một khách hàng mới.</li>
                                                 </ul>
                                             </div>
                                         </div>
