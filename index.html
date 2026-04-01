@@ -352,7 +352,7 @@
                                                 <p className="mb-2"><strong>Định nghĩa:</strong> Gom nhóm theo <strong>tuần mua hàng ĐẦU TIÊN</strong>. Đo lường tỷ lệ % khách tiếp tục gia hạn ở các tuần W1 đến W12.</p>
                                                 <ul className="list-disc pl-5 text-sm space-y-1 mt-2">
                                                     <li><strong>Giai đoạn W0 - W4:</strong> Tỷ lệ thường là 100% do người dùng phần lớn đang sử dụng gói 1 tháng.</li>
-                                                    <li><strong>Vách đá Rời bỏ (The Churn Cliff - W5):</strong> Điểm rơi quan trọng nhất khi gói 1 tháng hết hạn. Tỷ lệ % còn lại chính là lượng khách hàng quyết định <strong>Gia hạn (Renew)</strong>.</li>
+                                                    <li><strong>Tỷ lệ Rời bỏ (Churn Rate - W5):</strong> Điểm rơi quan trọng nhất khi gói 1 tháng hết hạn. Tỷ lệ % còn lại chính là lượng khách hàng quyết định <strong>Gia hạn (Renew)</strong>.</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -375,7 +375,7 @@
                                                 <ul className="list-disc pl-5 space-y-1">
                                                     <li><strong>Active Users:</strong> Dữ liệu đã được <code>deduplicate</code> (loại trùng lặp). Nếu 1 User chạy 2 gói song song, chỉ đếm là 1 User.</li>
                                                     <li><strong>Active Subs:</strong> Sẽ đếm là 2 Subscriptions. Do đó đường Subscriptions luôn nằm trên đường Users trên biểu đồ mảng.</li>
-                                                    <li><strong>Cohort Lock:</strong> Khóa Cohort Group bằng lệnh <code>min(Ngày thanh toán)</code> để tránh việc user mua lại gói (renew) bị tính như một khách hàng mới.</li>
+                                                    <li><strong>Cohort Lock:</strong> Khóa Cohort Group bằng lệnh <code>min (Ngày thanh toán)</code> để tránh việc user mua lại gói (renew) bị tính như một khách hàng mới.</li>
                                                 </ul>
                                             </div>
                                         </div>
