@@ -347,15 +347,15 @@
                                         </div>
                                     </div>
 
-                                    {/* CỘT 2: XỬ LÝ EDGE CASES CHI TIẾT */}
+                                    {/* CỘT 2: XỬ LÝ NGOẠI LAI (OUTLIERS) */}
                                     <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-6">
                                         <h3 className="text-xl font-bold text-slate-900 border-b pb-3 flex items-center">
-                                            <Icons.Settings /> <span className="ml-2">2. Xử lý Edge Cases (Ngoại lệ)</span>
+                                            <Icons.Settings /> <span className="ml-2">2. Xử lý Dữ liệu Ngoại lai (Outliers)</span>
                                         </h3>
                                         
                                         <div className="space-y-4 text-slate-700 text-sm">
                                             <div className="bg-orange-50 p-4 rounded-lg border border-orange-100">
-                                                <h4 className="font-bold text-slate-900 mb-2">2.1. Đơn hàng chồng chéo / Nâng cấp (Upgrades & Overlaps)</h4>
+                                                <h4 className="font-bold text-slate-900 mb-2">2.1.Upgrades & Overlaps</h4>
                                                 <p className="mb-2"><strong>Tình huống:</strong> Khách đang dùng gói 1 tháng (còn hạn 15 ngày) nhưng quyết định mua thêm/nâng cấp lên gói 1 năm ngay lập tức.</p>
                                                 <ul className="list-disc pl-5 space-y-1">
                                                     <li><strong>Về MRR:</strong> Kế toán dồn tích sẽ tự động cộng dồn (Stack) doanh thu của cả 2 gói trong 15 ngày trùng lặp đó, phản ánh chính xác Expansion MRR (Doanh thu mở rộng).</li>
@@ -364,19 +364,19 @@
                                             </div>
 
                                             <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                                                <h4 className="font-bold text-slate-900 mb-2">2.2. Khách hàng Dùng thử (Free Trials & 0 VNĐ)</h4>
+                                                <h4 className="font-bold text-slate-900 mb-2">2.2. Free Trials</h4>
                                                 <p className="mb-2"><strong>Tình huống:</strong> Khách dùng mã giảm giá 100% hoặc đăng ký tài khoản trải nghiệm 0đ.</p>
                                                 <p><strong>Xử lý:</strong> Pipeline dữ liệu tự động lọc bỏ các bản ghi không mang lại giá trị tài chính. Việc tách bạch giữa "Người dùng miễn phí" và "Người dùng trả phí" giúp tránh làm méo mó chỉ số ARPU (Average Revenue Per User) báo cáo cho nhà đầu tư.</p>
                                             </div>
 
                                             <div className="bg-purple-50 p-4 rounded-lg border border-purple-100">
-                                                <h4 className="font-bold text-slate-900 mb-2">2.3. Sự "Tái sinh" (Reactivation & The Smile Graph)</h4>
+                                                <h4 className="font-bold text-slate-900 mb-2">2.3. Reactivation & The Smiling Curve</h4>
                                                 <p className="mb-2"><strong>Tình huống:</strong> Khách hết hạn gói vào Tuần 4 (Rời bỏ - Churn), nhưng đến Tuần 8 bỗng nhiên quay lại mua gói mới.</p>
-                                                <p><strong>Xử lý:</strong> Cơ chế quét thời gian động trong biểu đồ Cohort cho phép tỷ lệ Retention có thể <strong>tăng trở lại</strong> ở các tuần sau. Điều này tạo ra tín hiệu "Smile Graph" (Đường cong nụ cười) - chứng minh sản phẩm có lực hút mạnh mẽ khiến khách hàng cũ quay lại.</p>
+                                                <p><strong>Xử lý:</strong> Cơ chế quét thời gian động trong biểu đồ Cohort cho phép tỷ lệ Retention có thể <strong>tăng trở lại</strong> ở các tuần sau. Điều này tạo ra tín hiệu "Smile Curve" (Đường cong nụ cười) - chứng minh sản phẩm có lực hút mạnh mẽ khiến khách hàng cũ quay lại.</p>
                                             </div>
 
                                             <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                                                <h4 className="font-bold text-slate-900 mb-2">2.4. Khách mua Trả góp (Installments)</h4>
+                                                <h4 className="font-bold text-slate-900 mb-2">2.4.Installments</h4>
                                                 <p className="mb-2"><strong>Tình huống:</strong> Khách mua gói 12 triệu nhưng trả góp mỗi tháng 1 triệu.</p>
                                                 <p><strong>Xử lý:</strong> Báo cáo ghi nhận <code>Tổng giá trị đơn hàng</code> (12 triệu) chia đều cho số ngày sử dụng, thay vì ghi nhận theo từng cục tiền 1 triệu lẻ tẻ. Điều này loại bỏ độ trễ của dòng tiền (Cash-flow lag) và phản ánh đúng quy mô bán hàng của tháng đó.</p>
                                             </div>
