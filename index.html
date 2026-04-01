@@ -31,7 +31,6 @@
         const { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } = window.Recharts;
         const { useState } = React;
 
-        // --- DỮ LIỆU THỰC TẾ (Đã khớp với báo cáo Python) ---
         const monthlyData = [
             { month: 'Jan 25', users: 0, mrr: 0, subs: 0 },
             { month: 'Feb 25', users: 0, mrr: 0, subs: 0 },
@@ -47,7 +46,6 @@
             { month: 'Dec 25', users: 1593, mrr: 1882424532, subs: 1840 },
         ];
 
-        // Dữ liệu Cohort theo tuần (Đã mở rộng từ W0 đến W12)
         const cohortData = [
             { cohort: '2025-03-31', size: 26, retention: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0] },
             { cohort: '2025-04-07', size: 33, retention: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0] },
@@ -156,7 +154,7 @@
                                 <div className="flex justify-between items-end mb-2">
                                     <div>
                                         <h2 className="text-2xl font-bold text-slate-900">Monthly Performance (Accrual Basis)</h2>
-                                        <p className="text-slate-500">Báo cáo đáp ứng yêu cầu số 1, 2 và 3 của đề bài.</p>
+                                        <p className="text-slate-500">Báo cáo</p>
                                     </div>
                                     <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full border border-green-200">Dec 2025 Data</span>
                                 </div>
